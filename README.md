@@ -2,7 +2,7 @@
   
  <H2>REGISTRATION</h2>
   Register anytime between September 26 and October 31
-  
+  <h3> Star my repo </h3>
   https://hacktoberfest.com/auth/
   
 Have 4 pull/merge requests accepted between October 1 and October 31 to complete Hacktoberfest
