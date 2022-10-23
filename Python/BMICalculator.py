@@ -3,8 +3,8 @@ def BMI(height, weight):
     return bmi
  
 # Driver code
-height = 1.79832
-weight = 70
+height = float(input("Enter your height in metres: ))
+weight = float(input("Enter your weight in kilograms: ))
  
 # calling the BMI function
 bmi = BMI(height, weight)
