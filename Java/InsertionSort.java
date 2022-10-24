@@ -1,40 +1,33 @@
-public class InsertionSort {
-  
-  public static void main(String[] args) 
-    { 
-        int arr[] = {22, 21, 11, 15, 16}; 
-       
-        insertionSort(arr, arr.length); 
-        Sort ob = new Sort();
-        ob.display(arr); 
-    } 
+import java.util.Arrays;
 
-  static void insertionSort(int arr[], int n) 
-    { 
-        if (n <= 1)                             //passes are done
-        {
-            return; 
-        }
+class InsertionSort {
 
-        insertionSort( arr, n-1 );        //one element sorted, sort the remaining array
-       
-        int last = arr[n-1];                        //last element of the array
-        int j = n-2;                                //correct index of last element of the array
-       
-        while (j >= 0 && arr[j] > last)                 //find the correct index of the last element
-        { 
-            arr[j+1] = arr[j];                          //shift section of sorted elements upwards by one element if correct index isn't found
-            j--; 
-        } 
-        arr[j+1] = last;                            //set the last element at its correct index
-    } 
+  void insertionSort(int array[]) {
+    int size = array.length;
 
-    void display(int arr[])                 //display the array
-    {  
-        for (int i=0; i<arr.length; ++i) 
-        {
-            System.out.print(arr[i]+" ");
-        } 
+    for (int step = 1; step < size; step++) {
+      int key = array[step];
+      int j = step - 1;
+
+      // Compare key with each element on the left of it until an element smaller than
+      // it is found.
+      // For descending order, change key<array[j] to key>array[j].
+      while (j >= 0 && key < array[j]) {
+        array[j + 1] = array[j];
+        --j;
+      }
+
+      // Place key at after the element just smaller than it.
+      array[j + 1] = key;
     }
+  }
 
+  // Driver code
+  public static void main(String args[]) {
+    int[] data = { 9, 5, 1, 4, 3 };
+    InsertionSort is = new InsertionSort();
+    is.insertionSort(data);
+    System.out.println("Sorted Array in Ascending Order: ");
+    System.out.println(Arrays.toString(data));
+  }
 }

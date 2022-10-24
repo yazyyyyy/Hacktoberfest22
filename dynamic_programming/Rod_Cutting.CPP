@@ -1,38 +1,26 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 
-int cutRodUtil(vector<int>& price, int ind, int N, vector<vector<int>>& dp){
-
-    if(ind == 0){
-        return N*price[0];
-    }
-    
-    if(dp[ind][N]!=-1)
-        return dp[ind][N];
-        
-    int notTaken = 0 + cutRodUtil(price,ind-1,N,dp);
-    
-    int taken = INT_MIN;
-    int rodLength = ind+1;
-    if(rodLength <= N)
-        taken = price[ind] + cutRodUtil(price,ind,N-rodLength,dp);
-        
-    return dp[ind][N] = max(notTaken,taken);
+int max(int a, int b) {
+   return (a > b)? a : b;
 }
 
+int rodCutting(int price[], int n) {    //from price and length of n, find max profit
+   int profit[n+1];
+   profit[0] = 0;
+   int maxProfit;
 
-int cutRod(vector<int>& price,int N) {
-
-    vector<vector<int>> dp(N,vector<int>(N+1,-1));
-    return cutRodUtil(price,N-1,N,dp);
+   for (int i = 1; i<=n; i++) {
+      maxProfit = INT_MIN;    //initially set as -ve infinity
+      for (int j = 0; j < i; j++)
+         maxProfit = max(maxProfit, price[j] + profit[i-j-1]);
+      profit[i] = maxProfit;
+   }
+   return maxProfit;
 }
 
 int main() {
-
-  vector<int> price = {3,5,7,6,10};
-  
-  int n = price.size();
-                                 
-  cout<<"The Maximum price generated is "<<cutRod(price,n);
+   int priceList[] = {1, 5, 8, 9, 10, 17, 17, 20};
+   int rodLength = 8;
+   cout << "Maximum Price: "<< rodCutting(priceList, rodLength);
 }
