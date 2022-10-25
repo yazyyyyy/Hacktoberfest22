@@ -1,23 +1,21 @@
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-double e(int x, int n)
+float exponential(int n, float x)
 {
-static double p=1,f=1;
-double r;
-if(n==0)
-return 1;
-r=e(x,n-1);
-p=p*x;
-f=f*n;
+	float sum = 1.0f;
 
-return r+p/f;
+	for (int i = n - 1; i > 0; --i )
+		sum = 1 + x * sum / i;
+
+	return sum;
 }
 
 
-int main() {
-int num,exp;
-cin>>num>>exp;
- cout<<e(num,exp);
- return 0;
+int main()
+{
+	int n = 10;
+	float x = 1.0f;
+	cout << "e^x = " << fixed << setprecision(5) << exponential(n, x);
+	return 0;
 }
